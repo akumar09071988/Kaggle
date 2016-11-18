@@ -26,3 +26,4 @@ for (x in speices){
   }
   
 }
+write.csv(data_submit, "C:\\Users\\Abhishek\\Documents\\Programing\\R\\kaggle\\leaf\\submission_decisiontree.csv", row.names = F, quote = F)

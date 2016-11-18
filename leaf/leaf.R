@@ -12,7 +12,7 @@ dtr = data_train_trim
 library(tree)
 attach(dtr)
 str(dtr)
-dtr$y = str_detect(dtr$species , "Eucalyptus_Glaucescens")
+dtr$y = str_detect(dtr$species , "Acer_Opalus")
 names(dtr)
 dtr =  dtr[,c(-2)]
 names(dtr)
@@ -25,3 +25,9 @@ pruned$size[which.min(pruned$dev)]
 prunedTree = prune.misclass(modeltr ,  best = pruned$size[which.min(pruned$dev)])
 plot(prunedTree)
 predictTree = predict(prunedTree,data_test )
+
+#random forrest
+rmodel = randomForest(as.factor(dtr$y)~. -id ,mtry = 12, data = dtr)
+rmodel
+rpredict = predict(rmodel,newdata = data_test, type="prob")
+rpredict[,2]
